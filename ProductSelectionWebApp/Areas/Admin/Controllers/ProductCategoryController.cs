@@ -14,7 +14,7 @@ using ProductSelectionWebApp.Utility;
 namespace ProductSelectionWebApp.Areas.Admin.Controllers
 {
     [Area("Admin")]
-   
+    [Authorize]
     public class ProductCategoryController : Controller
     {
         private readonly ApplicationDbContext _db;
