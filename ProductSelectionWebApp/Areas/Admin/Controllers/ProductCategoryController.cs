@@ -14,7 +14,7 @@ using ProductSelectionWebApp.Utility;
 namespace ProductSelectionWebApp.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    
+    [Authorize]
     public class ProductCategoryController : Controller
     {
         private readonly ApplicationDbContext _db;
@@ -50,7 +50,7 @@ namespace ProductSelectionWebApp.Areas.Admin.Controllers
 
     
         // Get: Products Category/ Create
-        [Authorize]
+        
         public IActionResult Create()
         {
             return View(ProductCategoryVM);
@@ -59,8 +59,7 @@ namespace ProductSelectionWebApp.Areas.Admin.Controllers
         // Post: Products Category/ Create
         [HttpPost]
         [ActionName("Create")]
-        [ValidateAntiForgeryToken]
-        [Authorize]
+        [ValidateAntiForgeryToken]        
         public async Task< IActionResult> CreatePost ()
         {
             if(!ModelState.IsValid)

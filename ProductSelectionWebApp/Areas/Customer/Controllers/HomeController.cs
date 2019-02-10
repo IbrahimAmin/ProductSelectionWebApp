@@ -46,12 +46,29 @@ namespace ProductSelectionWebApp.Controllers
             return View(ProductCategoryVM);
         }
 
-      
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+
+        // GET: Temp/ProductCategories/Details/5
+        public IActionResult Details(int? id)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            ProductViewModel productVM = new ProductViewModel
+            {
+                ProductCategory = _db.ProductCategory.FirstOrDefault(p => p.Id == id),
+                ProductCategories = _db.ProductCategory.ToList(),
+                InclusionTypes = _db.InclusionType.ToList(),
+
+                ProductList = _db.Product.Include(m => m.ProductCategory).Include(m => m.InclusionType).Where(m => m.ProductCategoryId == id).ToList(),
+
+
+            };
+            return View(productVM);
         }
+
+
     }
 }
