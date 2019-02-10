@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProductSelectionWebApp.Data;
 
 namespace ProductSelectionWebApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190210055001_updateProductCategory")]
+    partial class updateProductCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -190,7 +192,9 @@ namespace ProductSelectionWebApp.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime?>("CreatedOnUtc");
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedOnUtc");
 
                     b.Property<int>("DisplayOrder");
 
@@ -198,11 +202,13 @@ namespace ProductSelectionWebApp.Data.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<string>("UpdatedBy");
+
                     b.Property<DateTime?>("UpdatedOnUtc");
 
                     b.HasKey("Id");
 
-                    b.ToTable("InclusionType");
+                    b.ToTable("InclusionTypes");
                 });
 
             modelBuilder.Entity("ProductSelectionWebApp.Models.ProductCategory", b =>
@@ -211,7 +217,9 @@ namespace ProductSelectionWebApp.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime?>("CreatedOnUtc");
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedOnUtc");
 
                     b.Property<int>("DisplayOrder");
 
@@ -221,11 +229,13 @@ namespace ProductSelectionWebApp.Data.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<string>("UpdatedBy");
+
                     b.Property<DateTime?>("UpdatedOnUtc");
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductCategory");
+                    b.ToTable("ProductCategories");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -8,6 +8,7 @@ using ProductSelectionWebApp.Models;
 
 namespace ProductSelectionWebApp.Controllers
 {
+    [Area("Customer")]
     public class HomeController : Controller
     {
         public IActionResult Index()
