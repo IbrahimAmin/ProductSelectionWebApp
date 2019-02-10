@@ -16,7 +16,7 @@ using ProductSelectionWebApp.Utility;
 namespace ProductSelectionWebApp.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
+ 
     public class ProductController : Controller
     {
         private readonly ApplicationDbContext _db;
@@ -58,6 +58,7 @@ namespace ProductSelectionWebApp.Areas.Admin.Controllers
         [HttpPost]
         [ActionName("Create")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> CreatePost()
         {
             if (!ModelState.IsValid)
@@ -104,6 +105,7 @@ namespace ProductSelectionWebApp.Areas.Admin.Controllers
         }
 
         // GET: Temp/Products/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -127,6 +129,7 @@ namespace ProductSelectionWebApp.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("Id,ModelName,ModelNumber,Range,Image,ProductCategoryId,BrandId,InclusionTypeId")] Product product)
         {
             if (id != product.Id)
@@ -162,6 +165,7 @@ namespace ProductSelectionWebApp.Areas.Admin.Controllers
 
 
         // GET: Temp/Products/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -185,6 +189,7 @@ namespace ProductSelectionWebApp.Areas.Admin.Controllers
         // POST: Temp/Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var product = await _db.Product.FindAsync(id);
