@@ -10,9 +10,11 @@ namespace ProductSelectionWebApp.Areas.Admin.ViewModel
     {
         public Product Product { get; set; }
         public ProductCategory ProductCategory { get; set; }
+        public InclusionType InclusionType { get; set; }
         public IEnumerable<Product> ProductList { get; set; }
         public IEnumerable<Brand> Brands { get; set; }
         public IEnumerable<Range> Ranges { get; set; }
+        public IEnumerable<InclusionType> InclusionTypes { get; set; }
         public IEnumerable<ProductCategory> ProductCategories { get; set; }
     }
 }

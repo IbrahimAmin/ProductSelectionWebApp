@@ -12,16 +12,15 @@
 
 @foreach (var item in Model.BuildingAreasList)
 {
-    <div class="row ">
-        <div class="col-12">
-            <h5>@item.Name   </h5>
-            <div>                
-                <div class="" style="margin-top:5px; padding">
-                    <partial name="_ProductCategoryPartialView" model="Model.ProductCategoryList.Where(s => s.BuildingArea.Name.Equals(item.Name))" />
+       <div class="row ">
+            <div class="col-12">
+                <h5>@item.Name   </h5>
+                <div>
+                    <div class="" style="margin-top:5px; ">
+                        <partial name="_ProductCategoryPartialView" model="Model.ProductCategoryList.Where(s => s.BuildingArea.Name.Equals(item.Name))" />
+                    </div>
+
                 </div>
-             
             </div>
         </div>
-    </div>
-   
 }

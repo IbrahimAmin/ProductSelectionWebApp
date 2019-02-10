@@ -3,12 +3,66 @@
 <br />
 
 
+<h2>@Model.ProductCategory.Name</h2>
 
+<br />
 
-@foreach (var item in Model.ProductList)
-{
-    <div>
-        <label>@item.ModelName</label>
-    </div>
+<div class="col-12">
+    <h4>Standard Inclusion</h4>
 
-}
+    @foreach (var item in Model.ProductList.Where(m => m.InclusionTypeId == 1))
+    {
+        <div class=" card d-inline-block d-inline-flex " style="width:10rem">
+            <h6 class="card-header" style="font-size:15px"> @item.ModelName</h6>
+            <br />
+            <div class="">
+                <img src="@item.Image" style="height:100%; width:100%" />
+            </div>
+            <div class="card-footer">
+                <label>@item.Brand</label>
+                <label>@item.Range</label>
+            </div>
+        </div>
+    }
+</div>
+
+<br />
+<div class="col-12">
+    <h4>Premium Options</h4>
+
+    @foreach (var item in Model.ProductList.Where(m => m.InclusionTypeId == 2))
+    {
+        <div class=" card d-inline-block d-inline-flex " style="width:10rem">
+            <h6 class="card-header" style="font-size:15px"> @item.ModelName</h6>
+            <br />
+            <div class="">
+                <img src="@item.Image" style="height:100%; width:100%" />
+            </div>
+            <div class="card-footer">
+                <label>@item.Brand</label>
+                <label>@item.Range</label>
+            </div>
+        </div>
+    }
+</div>
+
+<br />
+<div class="col-12">
+    <h4>Luxury  Options</h4>
+
+    @foreach (var item in Model.ProductList.Where(m => m.InclusionTypeId == 3))
+    {
+        <div class=" card d-inline-block d-inline-flex " style="width:10rem">
+            <h6 class="card-header" style="font-size:15px"> @item.ModelName</h6>
+            <br />
+            <div class="">
+                <img src="@item.Image" style="height:100%; width:100%" />
+            </div>
+            <div class="card-footer">
+                <label>@item.Brand</label>
+                <label>@item.Range</label>
+            </div>
+        </div>
+    }
+</div>
+

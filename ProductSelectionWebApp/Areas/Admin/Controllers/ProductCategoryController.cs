@@ -40,11 +40,6 @@ namespace ProductSelectionWebApp.Areas.Admin.Controllers
         // Get: Products Category/ Index
         public IActionResult Index()
         {
-
-            //var productCategory = _db.ProductCategory.Include(m => m.BuildingArea).ToList();
-
-            //return View(productCategory);
-
             ProductCategoryViewModel ProductCategoryVM = new ProductCategoryViewModel
             {
                 ProductCategoryList = _db.ProductCategory.Include(m => m.BuildingArea).ToList(),
@@ -119,8 +114,10 @@ namespace ProductSelectionWebApp.Areas.Admin.Controllers
             ProductViewModel productVM = new ProductViewModel
             {
                 ProductCategory = _db.ProductCategory.FirstOrDefault(p=>p.Id==id),
+                ProductCategories=_db.ProductCategory.ToList(),
+                InclusionTypes = _db.InclusionType.ToList(),
 
-                ProductList = _db.Product.Include(m => m.ProductCategory).Where(m=>m.ProductCategoryId==id).ToList(),
+                ProductList = _db.Product.Include(m => m.ProductCategory).Include(m=>m.InclusionType).Where(m=>m.ProductCategoryId==id).ToList(),
 
 
             };            

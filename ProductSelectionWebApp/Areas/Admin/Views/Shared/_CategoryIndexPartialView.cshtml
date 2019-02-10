@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Product>
+
+@if (Model.Count() > 0)
+{
+    foreach (var item in Model)
+    {
+        <div class=" card d-inline-block d-inline-flex " style="width:10rem">
+            <h6 class="card-header" style="font-size:15px"> @item.ModelName</h6>
+            <br />
+            <div class="">
+                <img src="@item.Image" style="height:100%; width:100%" />
+            </div>
+            <div class="card-footer">
+                <label>@item.Brand</label>
+                <label>@item.Range</label>
+            </div>
+        </div>
+    }
+}
