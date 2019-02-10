@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProductSelectionWebApp.Data;
 
 namespace ProductSelectionWebApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190210104800_ProductControllerAdded")]
+    partial class ProductControllerAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -247,25 +249,27 @@ namespace ProductSelectionWebApp.Data.Migrations
 
                     b.Property<int>("BrandId");
 
+                    b.Property<int>("BuildingAreaId");
+
                     b.Property<string>("Image");
 
                     b.Property<int>("InclusionTypeId");
 
-                    b.Property<string>("ModelName");
-
-                    b.Property<string>("ModelNumber");
+                    b.Property<string>("Name");
 
                     b.Property<int>("ProductCategoryId");
 
-                    b.Property<string>("Range");
+                    b.Property<int>("RangeId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BrandId");
 
+                    b.HasIndex("BuildingAreaId");
+
                     b.HasIndex("InclusionTypeId");
 
-                    b.HasIndex("ProductCategoryId");
+                    b.HasIndex("RangeId");
 
                     b.ToTable("Product");
                 });
@@ -362,14 +366,19 @@ namespace ProductSelectionWebApp.Data.Migrations
                         .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Cascade);
 
+                    b.HasOne("ProductSelectionWebApp.Models.ProductCategory", "ProductCategory")
+                        .WithMany()
+                        .HasForeignKey("BuildingAreaId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("ProductSelectionWebApp.Models.InclusionType", "InclusionType")
                         .WithMany()
                         .HasForeignKey("InclusionTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("ProductSelectionWebApp.Models.ProductCategory", "ProductCategory")
+                    b.HasOne("ProductSelectionWebApp.Models.Range", "Range")
                         .WithMany()
-                        .HasForeignKey("ProductCategoryId")
+                        .HasForeignKey("RangeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

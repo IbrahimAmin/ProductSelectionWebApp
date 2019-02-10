@@ -14,7 +14,7 @@ using ProductSelectionWebApp.Utility;
 namespace ProductSelectionWebApp.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
+   
     public class ProductCategoryController : Controller
     {
         private readonly ApplicationDbContext _db;
@@ -106,10 +106,25 @@ namespace ProductSelectionWebApp.Areas.Admin.Controllers
             await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
 
+        }
+
+        // GET: Temp/ProductCategories/Details/5
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            ProductViewModel productVM = new ProductViewModel
+            {
+                ProductCategory = _db.ProductCategory.FirstOrDefault(p=>p.Id==id),
+
+                ProductList = _db.Product.Include(m => m.ProductCategory).Where(m=>m.ProductCategoryId==id).ToList(),
 
 
-
-
+            };            
+            return View(productVM);
         }
 
 

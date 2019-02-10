@@ -10,8 +10,12 @@ namespace ProductSelectionWebApp.Models
     public class Product
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string ModelName { get; set; }
+        public string ModelNumber { get; set; }
+        public string Range { get; set; }
+
         public string Image { get; set; }
+
 
 
 
@@ -19,7 +23,7 @@ namespace ProductSelectionWebApp.Models
         [Display(Name = "Category")]
         public int ProductCategoryId { get; set; }
 
-        [ForeignKey("BuildingAreaId")]
+        [ForeignKey("ProductCategoryId")]
         public virtual ProductCategory ProductCategory { get; set; }
 
         [Display(Name = "Brand")]
@@ -28,12 +32,7 @@ namespace ProductSelectionWebApp.Models
         [ForeignKey("BrandId")]
         public virtual Brand Brand { get; set; }
 
-        [Display(Name = "Range")]
-        public int RangeId { get; set; }
-
-        [ForeignKey("RangeId")]
-        public virtual Range Range { get; set; }
-
+       
         [Display(Name = "Inclusion Type")]
         public int InclusionTypeId { get; set; }
 
