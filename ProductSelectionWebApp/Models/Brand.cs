@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 
 namespace ProductSelectionWebApp.Models
 {
-    public class ProductFamily
+    public class Brand
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Url { get; set; }
     }
 }

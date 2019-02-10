@@ -70,7 +70,7 @@ namespace ProductSelectionWebApp
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{area=admin}/{controller=ProductCategory}/{action=Index}/{id?}");
+                    template: "{area=customer}/{controller=home}/{action=Index}/{id?}");
             });
 
            

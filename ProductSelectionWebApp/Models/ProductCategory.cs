@@ -17,7 +17,6 @@ namespace ProductSelectionWebApp.Models
 
         [Display(Name = "Building Area")]
         public int BuildingAreaId { get; set; }
-
        
         [ForeignKey("BuildingAreaId")]
         public virtual BuildingArea BuildingArea { get; set; }

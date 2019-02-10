@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace ProductSelectionWebApp.Models
 {
-    public class ProductFamily
+    public class Range
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string Rnage { get; set; }
     }
 }

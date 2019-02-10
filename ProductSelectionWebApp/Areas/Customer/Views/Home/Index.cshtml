@@ -1,8 +1,25 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model ProductCategoryViewModel
+
+@{
+    ViewData["Title"] = "Index";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to Marvel Homes Selection Portal</h1>
-    <p>Please select from the following areas</a>.</p>
-</div>
+<p>Welcome to Marvel Homes selection. Please select one of the areas to see the product list.</p>
+<br />
+
+
+@foreach (var item in Model.BuildingAreasList)
+{
+    <div class="row ">
+        <div class="col-12" style="margin-top:10px">
+            <h5>@item.Name   </h5>
+            <div>
+                <div class="" style="margin-top:5px; padding">
+                    <partial name="_IndexPagePartialView" model="Model.ProductCategoryList.Where(s => s.BuildingArea.Name.Equals(item.Name))" />
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+}
