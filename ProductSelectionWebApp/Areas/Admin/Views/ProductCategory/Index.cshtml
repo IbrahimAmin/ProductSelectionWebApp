@@ -10,16 +10,18 @@
     <a asp-action="Create">Create New</a>
 </p>
 
-@foreach (var item in Model.ProductCategoryList) {
-<div class=" card d-inline-block d-inline-flex " style="width:10rem">
-    <h6 class="card-header" style="font-size:15px"> @item.Name</h6>
-    <br />
-    <div class="">
-        <img src="@item.Image" style="height:100%; width:100%" />
+@foreach (var item in Model.BuildingAreasList)
+{
+    <div class="row ">
+        <div class="col-12">
+            <h5>@item.Name   </h5>
+            <div>                
+                <div class="" style="margin-top:5px; padding">
+                    <partial name="_ProductCategoryPartialView" model="Model.ProductCategoryList.Where(s => s.BuildingArea.Name.Equals(item.Name))" />
+                </div>
+             
+            </div>
+        </div>
     </div>
-    <div class="card-footer">
-
-    </div>
-</div>
+   
 }
-    

@@ -15,5 +15,6 @@ namespace ProductSelectionWebApp.Data
         }
         public DbSet<ProductCategory> ProductCategory { get; set; }
         public DbSet<InclusionType> InclusionType { get; set; }
+        public DbSet<ProductSelectionWebApp.Models.BuildingArea> BuildingArea { get; set; }
     }
 }

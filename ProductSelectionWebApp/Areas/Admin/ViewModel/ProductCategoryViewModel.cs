@@ -10,5 +10,6 @@ namespace ProductSelectionWebApp.Areas.Admin.ViewModel
     {
         public ProductCategory ProductCategory { get; set; }
         public IEnumerable<ProductCategory> ProductCategoryList { get; set; }
+        public IEnumerable<BuildingArea> BuildingAreasList { get; set; }
     }
 }

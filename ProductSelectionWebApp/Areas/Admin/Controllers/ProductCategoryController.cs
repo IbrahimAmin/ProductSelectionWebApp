@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ProductSelectionWebApp.Areas.Admin.ViewModel;
 using ProductSelectionWebApp.Data;
 using ProductSelectionWebApp.Utility;
@@ -26,8 +27,10 @@ namespace ProductSelectionWebApp.Areas.Admin.Controllers
             _hostingEnvironment = hostingEnvironment;
 
             ProductCategoryVM = new ProductCategoryViewModel
-            {
-                ProductCategory = new Models.ProductCategory()
+            {               
+                ProductCategory = new Models.ProductCategory(),
+                ProductCategoryList = _db.ProductCategory.ToList(),
+                BuildingAreasList = _db.BuildingArea.ToList()                
             };
 
         }
@@ -35,9 +38,15 @@ namespace ProductSelectionWebApp.Areas.Admin.Controllers
         // Get: Products Category/ Index
         public IActionResult Index()
         {
+
+            //var productCategory = _db.ProductCategory.Include(m => m.BuildingArea).ToList();
+
+            //return View(productCategory);
+
             ProductCategoryViewModel ProductCategoryVM = new ProductCategoryViewModel
             {
-                ProductCategoryList = _db.ProductCategory.ToList()
+                ProductCategoryList = _db.ProductCategory.Include(m => m.BuildingArea).ToList(),
+                BuildingAreasList = _db.BuildingArea.OrderBy(m => m.DisplayOrder).ToList()
             };
             return View(ProductCategoryVM);
         }
@@ -45,14 +54,14 @@ namespace ProductSelectionWebApp.Areas.Admin.Controllers
         // Get: Products Category/ Create
         public IActionResult Create()
         {
-            return View();
+            return View(ProductCategoryVM);
         }
 
         // Post: Products Category/ Create
         [HttpPost]
         [ActionName("Create")]
         [ValidateAntiForgeryToken]
-        public IActionResult CreatePost ()
+        public async Task< IActionResult> CreatePost ()
         {
             if(!ModelState.IsValid)
             {
@@ -60,7 +69,7 @@ namespace ProductSelectionWebApp.Areas.Admin.Controllers
             }
 
             _db.ProductCategory.Add(ProductCategoryVM.ProductCategory);
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
 
             // Image Being Saves
 
@@ -92,7 +101,7 @@ namespace ProductSelectionWebApp.Areas.Admin.Controllers
 
 
             }
-             _db.SaveChanges();
+            await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
 
 
