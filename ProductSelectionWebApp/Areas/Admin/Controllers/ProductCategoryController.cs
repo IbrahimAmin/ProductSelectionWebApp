@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,7 @@ using ProductSelectionWebApp.Utility;
 namespace ProductSelectionWebApp.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class ProductCategoryController : Controller
     {
         private readonly ApplicationDbContext _db;
