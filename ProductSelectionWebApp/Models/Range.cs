@@ -8,6 +8,6 @@ namespace ProductSelectionWebApp.Models
     public class Range
     {
         public int Id { get; set; }
-        public string Rnage { get; set; }
+        public string Name { get; set; }
     }
 }

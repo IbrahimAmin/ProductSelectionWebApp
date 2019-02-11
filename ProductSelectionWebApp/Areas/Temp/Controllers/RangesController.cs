@@ -55,7 +55,7 @@ namespace ProductSelectionWebApp.Areas.Temp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Rnage")] Range range)
+        public async Task<IActionResult> Create([Bind("Id,Name")] Range range)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace ProductSelectionWebApp.Areas.Temp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Rnage")] Range range)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Range range)
         {
             if (id != range.Id)
             {

@@ -16,5 +16,6 @@ namespace ProductSelectionWebApp.Areas.Admin.ViewModel
         public IEnumerable<Range> Ranges { get; set; }
         public IEnumerable<InclusionType> InclusionTypes { get; set; }
         public IEnumerable<ProductCategory> ProductCategories { get; set; }
+        
     }
 }

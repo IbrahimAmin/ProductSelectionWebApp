@@ -36,7 +36,9 @@ namespace ProductSelectionWebApp.Areas.Admin.Controllers
                 ProductList =_db.Product.ToList(),
                 ProductCategories=_db.ProductCategory.ToList(),
                 InclusionTypes=_db.InclusionType.ToList(),
-                Brands=_db.Brand.ToList()
+                Brands=_db.Brand.ToList(),
+                Ranges=_db.Range.ToList(),
+              
                
             };
 
@@ -44,8 +46,8 @@ namespace ProductSelectionWebApp.Areas.Admin.Controllers
         // GET: Admin/Products
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _db.Product.Include(p => p.Brand).Include(p => p.InclusionType).Include(p => p.ProductCategory);
-            return View(await applicationDbContext.ToListAsync());
+            var products = await _db.Product.Include(p => p.Brand).Include(p => p.InclusionType).Include(p => p.ProductCategory).Include(m=>m.Range).ToListAsync();
+            return View( products);
         }
 
         // Get: Product / Create
