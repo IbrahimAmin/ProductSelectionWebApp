@@ -23,7 +23,7 @@ namespace ProductSelectionWebApp.Areas.Temp.Controllers
         // GET: Temp/Products
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Product.Include(p => p.Brand).Include(p => p.InclusionType).Include(p => p.ProductCategory);
+            var applicationDbContext = _context.Product.Include(p => p.Brand).Include(p => p.InclusionType).Include(p => p.ProductCategory).Include(p => p.Range);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -39,6 +39,7 @@ namespace ProductSelectionWebApp.Areas.Temp.Controllers
                 .Include(p => p.Brand)
                 .Include(p => p.InclusionType)
                 .Include(p => p.ProductCategory)
+                .Include(p => p.Range)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
@@ -51,9 +52,10 @@ namespace ProductSelectionWebApp.Areas.Temp.Controllers
         // GET: Temp/Products/Create
         public IActionResult Create()
         {
-            ViewData["BrandId"] = new SelectList(_context.Brand, "Id", "Name");
-            ViewData["InclusionTypeId"] = new SelectList(_context.InclusionType, "Id", "Name");
-            ViewData["ProductCategoryId"] = new SelectList(_context.ProductCategory, "Id", "Name");
+            ViewData["BrandId"] = new SelectList(_context.Brand, "Id", "Id");
+            ViewData["InclusionTypeId"] = new SelectList(_context.InclusionType, "Id", "Id");
+            ViewData["ProductCategoryId"] = new SelectList(_context.ProductCategory, "Id", "Id");
+            ViewData["RangeId"] = new SelectList(_context.Range, "Id", "Id");
             return View();
         }
 
@@ -62,7 +64,7 @@ namespace ProductSelectionWebApp.Areas.Temp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ModelName,ModelNumber,Range,Image,ProductCategoryId,BrandId,InclusionTypeId")] Product product)
+        public async Task<IActionResult> Create([Bind("Id,ModelName,ModelNumber,IsActive,IsDefault,Image,Note,ProductCategoryId,BrandId,RangeId,InclusionTypeId")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -70,9 +72,10 @@ namespace ProductSelectionWebApp.Areas.Temp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BrandId"] = new SelectList(_context.Brand, "Id", "Name", product.BrandId);
-            ViewData["InclusionTypeId"] = new SelectList(_context.InclusionType, "Id", "Name", product.InclusionTypeId);
-            ViewData["ProductCategoryId"] = new SelectList(_context.ProductCategory, "Id", "Name", product.ProductCategoryId);
+            ViewData["BrandId"] = new SelectList(_context.Brand, "Id", "Id", product.BrandId);
+            ViewData["InclusionTypeId"] = new SelectList(_context.InclusionType, "Id", "Id", product.InclusionTypeId);
+            ViewData["ProductCategoryId"] = new SelectList(_context.ProductCategory, "Id", "Id", product.ProductCategoryId);
+            ViewData["RangeId"] = new SelectList(_context.Range, "Id", "Id", product.RangeId);
             return View(product);
         }
 
@@ -89,9 +92,10 @@ namespace ProductSelectionWebApp.Areas.Temp.Controllers
             {
                 return NotFound();
             }
-            ViewData["BrandId"] = new SelectList(_context.Brand, "Id", "Name", product.BrandId);
-            ViewData["InclusionTypeId"] = new SelectList(_context.InclusionType, "Id", "Name", product.InclusionTypeId);
-            ViewData["ProductCategoryId"] = new SelectList(_context.ProductCategory, "Id", "Name", product.ProductCategoryId);
+            ViewData["BrandId"] = new SelectList(_context.Brand, "Id", "Id", product.BrandId);
+            ViewData["InclusionTypeId"] = new SelectList(_context.InclusionType, "Id", "Id", product.InclusionTypeId);
+            ViewData["ProductCategoryId"] = new SelectList(_context.ProductCategory, "Id", "Id", product.ProductCategoryId);
+            ViewData["RangeId"] = new SelectList(_context.Range, "Id", "Id", product.RangeId);
             return View(product);
         }
 
@@ -100,7 +104,7 @@ namespace ProductSelectionWebApp.Areas.Temp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ModelName,ModelNumber,Range,Image,ProductCategoryId,BrandId,InclusionTypeId")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ModelName,ModelNumber,IsActive,IsDefault,Image,Note,ProductCategoryId,BrandId,RangeId,InclusionTypeId")] Product product)
         {
             if (id != product.Id)
             {
@@ -127,9 +131,10 @@ namespace ProductSelectionWebApp.Areas.Temp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BrandId"] = new SelectList(_context.Brand, "Id", "Name", product.BrandId);
-            ViewData["InclusionTypeId"] = new SelectList(_context.InclusionType, "Id", "Name", product.InclusionTypeId);
-            ViewData["ProductCategoryId"] = new SelectList(_context.ProductCategory, "Id", "Name", product.ProductCategoryId);
+            ViewData["BrandId"] = new SelectList(_context.Brand, "Id", "Id", product.BrandId);
+            ViewData["InclusionTypeId"] = new SelectList(_context.InclusionType, "Id", "Id", product.InclusionTypeId);
+            ViewData["ProductCategoryId"] = new SelectList(_context.ProductCategory, "Id", "Id", product.ProductCategoryId);
+            ViewData["RangeId"] = new SelectList(_context.Range, "Id", "Id", product.RangeId);
             return View(product);
         }
 
@@ -145,6 +150,7 @@ namespace ProductSelectionWebApp.Areas.Temp.Controllers
                 .Include(p => p.Brand)
                 .Include(p => p.InclusionType)
                 .Include(p => p.ProductCategory)
+                .Include(p => p.Range)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {

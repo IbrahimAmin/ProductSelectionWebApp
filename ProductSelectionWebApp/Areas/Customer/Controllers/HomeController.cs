@@ -40,7 +40,7 @@ namespace ProductSelectionWebApp.Controllers
         {
             ProductCategoryViewModel ProductCategoryVM = new ProductCategoryViewModel
             {
-                ProductCategoryList = _db.ProductCategory.Include(m => m.BuildingArea).ToList(),
+                ProductCategoryList = _db.ProductCategory.Include(m => m.BuildingArea).Where(m=>m.IsActive == true).ToList(),
                 BuildingAreasList = _db.BuildingArea.OrderBy(m => m.DisplayOrder).ToList()
             };
             return View(ProductCategoryVM);
@@ -62,7 +62,7 @@ namespace ProductSelectionWebApp.Controllers
                 ProductCategories = _db.ProductCategory.ToList(),
                 InclusionTypes = _db.InclusionType.ToList(),
 
-                ProductList = _db.Product.Include(m => m.ProductCategory).Include(m => m.InclusionType).Where(m => m.ProductCategoryId == id).ToList(),
+                ProductList = _db.Product.Include(m => m.ProductCategory).Include(m => m.InclusionType).Where(m => m.ProductCategoryId == id).Where(m=>m.IsActive==true).ToList(),
 
 
             };

@@ -16,7 +16,9 @@ namespace ProductSelectionWebApp.Models
 
         [Display(Name = "Model Number")]
         public string ModelNumber { get; set; }
-        //public string Range { get; set; }
+
+        public bool IsActive { get; set; }
+        public bool IsDefault { get; set; }
 
         public string Image { get; set; }
 

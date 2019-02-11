@@ -37,7 +37,7 @@ namespace ProductSelectionWebApp.Areas.Admin.Controllers
                 ProductCategories=_db.ProductCategory.ToList(),
                 InclusionTypes=_db.InclusionType.ToList(),
                 Brands=_db.Brand.ToList(),
-                Ranges=_db.Range.ToList(),
+                Ranges=_db.Range.ToList(),               
               
                
             };

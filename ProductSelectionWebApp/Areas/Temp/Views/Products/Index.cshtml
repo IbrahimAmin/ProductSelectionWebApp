@@ -19,16 +19,25 @@
                 @Html.DisplayNameFor(model => model.ModelNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Range)
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsDefault)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Note)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ProductCategory)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Range)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.InclusionType)
@@ -46,16 +55,25 @@
                 @Html.DisplayFor(modelItem => item.ModelNumber)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Range)
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDefault)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Note)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProductCategory.Id)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Brand.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Range.Id)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.InclusionType.Id)
